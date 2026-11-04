@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Popup demo — Man Your Post (review)</title><meta name="robots" content="noindex">
+<style>
+html,body{margin:0;background:#f4f1ea}
+.site{min-height:200vh;background:url(assets/site-desktop.jpg) top center/1366px auto no-repeat #fff}
+@media (max-width:720px){.site{background:url(assets/site-mobile.jpg) top center/390px auto no-repeat #fff}}
+.rv{position:fixed;left:12px;top:12px;z-index:10;font:600 13px/1.2 -apple-system,Segoe UI,Arial,sans-serif;background:#111;color:#fff;border-radius:6px;padding:8px 10px;display:flex;gap:8px;align-items:center;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.rv button,.rv a{font:inherit;background:#c9a24e;color:#111;border:0;border-radius:4px;padding:6px 9px;cursor:pointer;text-decoration:none}
+</style></head>
+<body>
+<div class="rv">Review demo <button onclick="CFLManYourPost.reset();CFLManYourPost.close();setTimeout(()=>location.reload(),50)">Replay</button><a href="./">Back</a></div>
+<div class="site" aria-hidden="true"></div>
+<script>try{localStorage.removeItem("cfl_myp_popup_v1")}catch(e){}
+window.MYP_POPUP={demo:true,delayMs:1500,minPagesBeforeAuto:0,snoozeDays:0,coverUrl:"assets/cover.jpg"};</script>
+<script src="popup/myp-popup.js"></script>
+</body></html>

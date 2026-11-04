@@ -285,7 +285,7 @@ button.go:disabled{opacity:.6;cursor:wait;transform:none}\
   function boot() {
     var s = store.get(); store.set({ views: (s.views || 0) + 1 });
     if (forced() && !excluded()) { open("link"); return; }
-    if (eligible()) arm();
+    if (eligible()) { (new Image()).src = CFG.coverUrl; arm(); } // warm the cover so it's there when the popup opens
   }
 
   // Links anywhere on the site: <a href="#man-your-post"> or [data-myp-open] opens it without a reload.

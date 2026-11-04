@@ -60,26 +60,26 @@
 *{box-sizing:border-box}\
 .bd{position:fixed;inset:0;z-index:2147483000;background:rgba(8,7,5,.72);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .35s ease}\
 .bd.on{opacity:1}\
-.dlg{position:relative;width:100%;max-width:820px;display:grid;grid-template-columns:300px 1fr;background:#0f0e0c;color:#efe6d2;border:1px solid rgba(201,162,78,.45);box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.03);border-radius:6px;overflow:hidden;transform:translateY(14px) scale(.985);transition:transform .45s cubic-bezier(.2,.8,.2,1);font-family:'Source Sans 3','Helvetica Neue',Arial,sans-serif}\
+.dlg{position:relative;width:100%;max-width:820px;display:grid;grid-template-columns:300px 1fr;background:#0f0e0c;color:#efe6d2;border:1px solid rgba(201,162,78,.45);box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.03);border-radius:6px;overflow:hidden;transform:translateY(14px) scale(.985);transition:transform .45s cubic-bezier(.2,.8,.2,1);font-family:'Barlow','Helvetica Neue',Arial,sans-serif}\
 .bd.on .dlg{transform:none}\
 .art{position:relative;background:radial-gradient(120% 80% at 50% 38%,#3a2d14 0%,#16120b 55%,#0a0908 100%);display:flex;align-items:center;justify-content:center;padding:34px 28px;overflow:hidden}\
 .cover{position:relative;z-index:1;width:100%;max-width:210px;aspect-ratio:1080/1669;object-fit:cover;border-radius:2px;box-shadow:0 22px 40px rgba(0,0,0,.7),0 0 0 1px rgba(201,162,78,.35),0 0 60px rgba(201,162,78,.18);transform:rotate(-2.5deg)}\
-.ribbon{position:absolute;z-index:2;top:22px;left:-38px;transform:rotate(-38deg);background:#c9a24e;color:#14110b;font:800 12px/1 'Source Sans 3',Arial,sans-serif;letter-spacing:.22em;padding:7px 48px;box-shadow:0 4px 12px rgba(0,0,0,.4)}\
+.ribbon{position:absolute;z-index:2;top:22px;left:-38px;transform:rotate(-38deg);background:#c9a24e;color:#14110b;font:800 12px/1 'Barlow',Arial,sans-serif;letter-spacing:.22em;padding:7px 48px;box-shadow:0 4px 12px rgba(0,0,0,.4)}\
 .body{padding:40px 42px 30px}\
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#c9a24e;margin:0 0 14px;display:flex;align-items:center;gap:10px}\
 .eyebrow:after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,162,78,.6),transparent)}\
-h2{text-wrap:balance;font-family:'Libre Caslon Text',Georgia,'Times New Roman',serif;font-weight:700;font-size:29px;line-height:1.17;margin:0 0 14px;color:#f4ecd9;letter-spacing:-.005em}\
+h2{text-wrap:balance;font-family:'Oswald',Impact,sans-serif;text-transform:uppercase;font-weight:600;font-size:33px;line-height:1.08;margin:0 0 14px;color:#f4ecd9;letter-spacing:-.005em}\
 h2 em{font-style:normal;color:#d9b45f;display:block;margin-top:4px}\
 .dlg:focus{outline:none}\
-.cta{font-family:'Libre Caslon Text',Georgia,serif;font-size:19px;line-height:1.35;margin:0 0 14px;color:#efe6d2}\
-.cta b{color:#d9b45f;font-weight:700;white-space:nowrap}\
+.cta{font-family:'Barlow',Arial,sans-serif;font-weight:600;font-size:19px;line-height:1.35;margin:0 0 14px;color:#efe6d2}\
+.cta b{font-family:'Cinzel',Georgia,serif;color:#d9b45f;font-weight:800;white-space:nowrap;letter-spacing:.02em}\
 .lede{font-size:15.5px;line-height:1.55;color:#c8bea8;margin:0 0 20px}\
 .lede i{color:#e6dcc4}\
 form{display:grid;grid-template-columns:1fr 1.35fr;gap:10px;margin:0}\
 input{width:100%;font:inherit;font-size:16px;color:#f4ecd9;background:#1a1814;border:1px solid #3b3529;border-radius:4px;padding:13px 14px;outline:none;transition:border-color .2s,box-shadow .2s}\
 input::placeholder{color:#7f7663}\
 input:focus{border-color:#c9a24e;box-shadow:0 0 0 3px rgba(201,162,78,.2)}\
-button.go{grid-column:1/-1;font:800 15px/1 'Source Sans 3',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#14110b;background:linear-gradient(180deg,#dcb766,#c39a45);border:0;border-radius:4px;padding:16px 18px;cursor:pointer;box-shadow:0 6px 18px rgba(201,162,78,.25);transition:transform .15s,filter .15s}\
+button.go{grid-column:1/-1;font:800 15px/1 'Barlow',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#14110b;background:linear-gradient(180deg,#dcb766,#c39a45);border:0;border-radius:4px;padding:16px 18px;cursor:pointer;box-shadow:0 6px 18px rgba(201,162,78,.25);transition:transform .15s,filter .15s}\
 button.go:hover{filter:brightness(1.06);transform:translateY(-1px)}\
 button.go:disabled{opacity:.6;cursor:wait;transform:none}\
 .fine{font-size:12.5px;line-height:1.45;color:#8a816d;margin:12px 0 0}\
@@ -91,9 +91,9 @@ button.go:disabled{opacity:.6;cursor:wait;transform:none}\
 .x{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:50%;border:0;background:transparent;color:#a99f88;font-size:26px;line-height:40px;cursor:pointer;z-index:3}\
 .x:hover{background:rgba(255,255,255,.06);color:#f4ecd9}\
 .ok{display:none}\
-.ok h3{font-family:'Libre Caslon Text',Georgia,serif;font-size:28px;margin:0 0 10px;color:#f4ecd9}\
+.ok h3{font-family:'Oswald',Impact,sans-serif;text-transform:uppercase;font-weight:600;font-size:32px;margin:0 0 10px;color:#f4ecd9}\
 .ok p{font-size:16px;line-height:1.55;color:#c8bea8;margin:0 0 16px}\
-.ok .vs{font-family:'Libre Caslon Text',Georgia,serif;font-style:italic;color:#d9b45f;font-size:17px;border-left:2px solid #c9a24e;padding-left:14px;margin:18px 0 22px}\
+.ok .vs{font-family:'Barlow',Arial,sans-serif;font-weight:500;font-style:italic;color:#d9b45f;font-size:17px;border-left:2px solid #c9a24e;padding-left:14px;margin:18px 0 22px}\
 .ok a.btn{display:inline-block;color:#14110b;background:#c9a24e;text-decoration:none;font-weight:800;letter-spacing:.1em;text-transform:uppercase;font-size:13px;padding:13px 18px;border-radius:4px}\
 .done .form-area{display:none}.done .ok{display:block}\
 :focus-visible{outline:2px solid #e3c47a;outline-offset:2px}\
@@ -109,7 +109,7 @@ button.go:disabled{opacity:.6;cursor:wait;transform:none}\
  .ribbon{display:none}\
  .tag{display:block}\
  .body{padding:14px 20px 20px}\
- h2{font-size:23px;margin-bottom:10px}\
+ h2{font-size:27px;margin-bottom:10px}\
  .cta{font-size:17px;margin-bottom:10px}\
  .lede{font-size:14.5px;line-height:1.5;margin-bottom:14px}\
  form{grid-template-columns:1fr}\
@@ -153,7 +153,7 @@ button.go:disabled{opacity:.6;cursor:wait;transform:none}\
     if (document.getElementById("myp-fonts")) return;
     var l = document.createElement("link");
     l.id = "myp-fonts"; l.rel = "stylesheet";
-    l.href = "https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700;800&display=swap";
+    l.href = "https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Cinzel:wght@700;800;900&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap";
     document.head.appendChild(l);
   }
 

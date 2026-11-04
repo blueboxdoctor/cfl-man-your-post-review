@@ -5,16 +5,18 @@ import fs from "fs"; import path from "path"; import url from "url";
 const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const DIR = path.dirname(url.fileURLToPath(import.meta.url));
 const what = process.argv[2] || "all";
-const F = '<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">';
+const F = '<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Cinzel:wght@700;800;900&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">';
 const A = (f) => "file://" + path.join(DIR, f);
 const COVER = A("assets/cover.jpg");
 const baseCss = `
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0b0a08;color:#f4ecd9;font-family:'Source Sans 3',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+body{background:#0b0a08;color:#f4ecd9;font-family:'Barlow',Arial,sans-serif;-webkit-font-smoothing:antialiased}
 .c{position:relative;overflow:hidden;background:#0b0a08}
 .bg{position:absolute;left:0;right:0;background-repeat:no-repeat}
 .shade{position:absolute;inset:0}
-.ser{font-family:'Libre Caslon Text',Georgia,serif;text-wrap:balance}
+.ser{font-family:'Oswald',Impact,sans-serif;font-weight:600!important;text-transform:uppercase;letter-spacing:.012em;text-wrap:balance}
+.cin{font-family:'Cinzel',Georgia,serif!important;font-weight:800!important;text-transform:none;letter-spacing:.02em}
+.q{font-family:'Oswald',sans-serif!important;font-weight:500!important;font-style:normal!important;text-transform:none!important;letter-spacing:.005em}
 .gold{color:#d9b45f}
 .eb{font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:#c9a24e;display:flex;align-items:center;gap:18px}
 .eb:before,.eb:after{content:'';height:2px;flex:1;background:linear-gradient(90deg,transparent,rgba(201,162,78,.7))}
@@ -38,13 +40,13 @@ const cards = {
  ${fadeDown(600,170)}
  <div style="position:absolute;top:735px;left:80px;right:80px;text-align:center">
   <div class="eb" style="font-size:19px;margin-bottom:24px">To the men of the house</div>
-  <div class="ser" style="font-size:52px;line-height:1.12;font-weight:700">Liberalism may be winning in our government.</div>
-  <div class="ser gold" style="font-size:52px;line-height:1.12;font-weight:700;margin-top:8px">It doesn’t have to win in your home.</div>
+  <div class="ser" style="font-size:60px;line-height:1.06;font-weight:700">Liberalism may be winning in our government.</div>
+  <div class="ser gold" style="font-size:60px;line-height:1.06;font-weight:700;margin-top:8px">It doesn’t have to win in your home.</div>
  </div>
  <div style="position:absolute;left:80px;right:80px;bottom:62px;display:flex;align-items:center;gap:40px">
   <img class="cv" src="${COVER}" style="width:150px;transform:rotate(-3deg)">
   <div>
-   <div class="ser" style="font-size:48px;font-weight:700;line-height:1.05">Men, man your post.</div>
+   <div class="ser cin" style="font-size:46px;line-height:1.05">Men, man your post.</div>
    <div style="font-size:25px;line-height:1.35;color:#d8ceb6;margin-top:12px">Get Philip Goodwin’s booklet <span class="free" style="font-size:19px;padding:5px 12px;vertical-align:3px">Free</span><br>when you join our email list.</div>
    <div class="mark" style="font-size:17px;margin-top:14px">churchandfamilylife.com</div>
   </div>
@@ -56,13 +58,13 @@ const cards = {
  ${paint(BG, "center 64%", "top:0;height:640px")}
  ${fadeDown(500,150)}
  <div style="position:absolute;top:615px;left:70px;right:70px;text-align:center">
-  <div class="ser" style="font-size:44px;line-height:1.13;font-weight:700">Liberalism may be winning in our government.</div>
-  <div class="ser gold" style="font-size:44px;line-height:1.13;font-weight:700;margin-top:6px">It doesn’t have to win in your home.</div>
+  <div class="ser" style="font-size:54px;line-height:1.06;font-weight:700">Liberalism may be winning in our government.</div>
+  <div class="ser gold" style="font-size:54px;line-height:1.06;font-weight:700;margin-top:6px">It doesn’t have to win in your home.</div>
  </div>
  <div style="position:absolute;left:70px;right:70px;bottom:40px;display:flex;align-items:center;gap:34px">
   <img class="cv" src="${COVER}" style="width:108px;transform:rotate(-3deg)">
   <div>
-   <div class="ser" style="font-size:40px;font-weight:700;line-height:1.05">Men, man your post.</div>
+   <div class="ser cin" style="font-size:38px;line-height:1.05">Men, man your post.</div>
    <div style="font-size:22px;line-height:1.35;color:#d8ceb6;margin-top:8px">Free booklet when you join our email list.</div>
    <div class="mark" style="font-size:15px;margin-top:10px">churchandfamilylife.com</div>
   </div>
@@ -73,15 +75,15 @@ const cards = {
 <div class="c" style="width:1080px;height:1920px">
  ${paint(BG, "center 75%", "top:0;height:1060px")}
  ${fadeDown(880,190)}
- <div style="position:absolute;top:1030px;left:90px;right:90px;text-align:center">
+ <div style="position:absolute;top:1010px;left:60px;right:60px;text-align:center">
   <div class="eb" style="font-size:21px;margin-bottom:28px">To the men of the house</div>
-  <div class="ser" style="font-size:62px;line-height:1.12;font-weight:700">Liberalism may be winning in our government.</div>
-  <div class="ser gold" style="font-size:62px;line-height:1.12;font-weight:700;margin-top:10px">It doesn’t have to win in your home.</div>
+  <div class="ser" style="font-size:70px;line-height:1.05;font-weight:700">Liberalism may be winning in our government.</div>
+  <div class="ser gold" style="font-size:70px;line-height:1.05;font-weight:700;margin-top:10px">It doesn’t have to win in your home.</div>
  </div>
- <div style="position:absolute;left:90px;right:90px;bottom:230px;display:flex;align-items:center;gap:44px">
+ <div style="position:absolute;left:90px;right:90px;bottom:215px;display:flex;align-items:center;gap:44px">
   <img class="cv" src="${COVER}" style="width:170px;transform:rotate(-3deg)">
   <div>
-   <div class="ser" style="font-size:56px;font-weight:700;line-height:1.05">Men, man your post.</div>
+   <div class="ser cin" style="font-size:52px;line-height:1.05">Men, man your post.</div>
    <div style="font-size:29px;line-height:1.35;color:#d8ceb6;margin-top:12px">Get the booklet <span class="free" style="font-size:21px;padding:5px 12px;vertical-align:3px">Free</span><br>when you join our email list.</div>
   </div>
  </div>
@@ -94,12 +96,12 @@ const cards = {
  <div class="shade" style="left:760px;width:160px;right:auto;background:linear-gradient(90deg,#0b0a08,rgba(11,10,8,0))"></div>
  <div style="position:absolute;top:92px;left:84px;width:660px">
   <div class="eb l" style="font-size:16px;margin-bottom:28px">To the men of the house</div>
-  <div class="ser" style="font-size:50px;line-height:1.13;font-weight:700">Liberalism may be winning in our government.</div>
-  <div class="ser gold" style="font-size:50px;line-height:1.13;font-weight:700;margin-top:10px">It doesn’t have to win in your home.</div>
+  <div class="ser" style="font-size:62px;line-height:1.06;font-weight:700">Liberalism may be winning in our government.</div>
+  <div class="ser gold" style="font-size:62px;line-height:1.06;font-weight:700;margin-top:10px">It doesn’t have to win in your home.</div>
   <div style="display:flex;align-items:center;gap:28px;margin-top:48px">
    <img class="cv" src="${COVER}" style="width:116px;transform:rotate(-3deg)">
    <div>
-    <div class="ser" style="font-size:38px;font-weight:700">Men, man your post.</div>
+    <div class="ser cin" style="font-size:36px">Men, man your post.</div>
     <div style="font-size:21px;color:#d8ceb6;margin-top:8px">Free booklet when you join our email list.</div>
     <div class="mark" style="font-size:15px;margin-top:12px">churchandfamilylife.com</div>
    </div>
@@ -112,13 +114,13 @@ const cards = {
  ${paint(BG2, "center 64%", "top:0;height:790px")}
  ${fadeDown(630,170)}
  <div style="position:absolute;top:770px;left:92px;right:92px;text-align:center">
-  <div class="ser" style="font-size:40px;line-height:1.3;font-style:italic"><span class="gold">“</span>Become a faithful keeper of your own vineyard, a watchful overseer of your household, a diligent shepherd of your flock, and a <span class="gold">courageous defender of your fort.</span>”</div>
+  <div class="ser q" style="font-size:44px;line-height:1.25"><span class="gold">“</span>Become a faithful keeper of your own vineyard, a watchful overseer of your household, a diligent shepherd of your flock, and a <span class="gold">courageous defender of your fort.</span>”</div>
   <div class="eb" style="font-size:18px;margin-top:26px">Philip Goodwin · 1655</div>
  </div>
  <div style="position:absolute;left:92px;right:92px;bottom:58px;display:flex;align-items:center;gap:38px">
   <img class="cv" src="${COVER}" style="width:118px;transform:rotate(-3deg)">
   <div>
-   <div class="ser" style="font-size:44px;font-weight:700;line-height:1.05">Man Your Post</div>
+   <div class="ser cin" style="font-size:42px;line-height:1.05">Man Your Post</div>
    <div style="font-size:24px;line-height:1.35;color:#d8ceb6;margin-top:10px">Free when you join our email list.</div>
    <div class="mark" style="font-size:16px;margin-top:12px">churchandfamilylife.com</div>
   </div>

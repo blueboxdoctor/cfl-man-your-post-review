@@ -1,5 +1,5 @@
 /*!
- * Church & Family Life — "Man Your Post" free-booklet email popup  (v1, 2026-11-04)
+ * Church & Family Life — "Man Your Post" free-booklet email popup  (v2, 2026-11-04: email only, painting panel, parchment + moss palette)
  * Drop-in, no dependencies. Renders inside a Shadow DOM so site CSS can't bleed in.
  *
  * Install (Exo):
@@ -16,7 +16,7 @@
   var CFG = Object.assign({
     // Where the email goes. Empty string = demo mode (no network call, shows success).
     endpoint: "",
-    // "json"            -> POST {firstName,email,tags[]} as JSON to endpoint (CFL API / ESP webhook)
+    // "json"            -> POST {email,tags[]} as JSON to endpoint (CFL API / ESP webhook)
     // "mailchimp-jsonp" -> endpoint is the Mailchimp embedded-form action URL (…list-manage.com/subscribe/post?u=…&id=…)
     method: "json",
     tag: "giveaway-man-your-post",
@@ -29,7 +29,8 @@
     productUrl: "https://churchandfamilylife.com/products/6ac6570d68c8897ef2d80484",
     coverUrl: "https://cfl-mango.s3.us-east-1.amazonaws.com/assets/products/6ac6570d68c8897ef2d80484/image.jpg",
     privacyUrl: "https://churchandfamilylife.com/privacy",
-    offerLine: "Free digital copy, delivered to your inbox.",
+    artUrl: "https://blueboxdoctor.github.io/cfl-man-your-post-review/art/painting-main.jpg", // Exo: host on CFL S3 before launch
+    offerLine: "Free digital copy by email, plus occasional Church & Family Life updates. Unsubscribe anytime.",
     demo: false
   }, window.MYP_POPUP || {});
 
@@ -58,61 +59,62 @@
   var CSS = "\
 :host{all:initial}\
 *{box-sizing:border-box}\
-.bd{position:fixed;inset:0;z-index:2147483000;background:rgba(8,7,5,.72);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .35s ease}\
+.bd{position:fixed;inset:0;z-index:2147483000;background:rgba(24,21,14,.62);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .35s ease}\
 .bd.on{opacity:1}\
-.dlg{position:relative;width:100%;max-width:820px;display:grid;grid-template-columns:300px 1fr;background:#0f0e0c;color:#efe6d2;border:1px solid rgba(201,162,78,.45);box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.03);border-radius:6px;overflow:hidden;transform:translateY(14px) scale(.985);transition:transform .45s cubic-bezier(.2,.8,.2,1);font-family:'Barlow','Helvetica Neue',Arial,sans-serif}\
+.dlg{position:relative;width:100%;max-width:780px;display:grid;grid-template-columns:320px 1fr;background:#f1eadb;color:#2a261c;box-shadow:0 30px 80px rgba(20,16,8,.45);border-radius:6px;overflow:hidden;transform:translateY(14px) scale(.985);transition:transform .45s cubic-bezier(.2,.8,.2,1);font-family:'Barlow','Helvetica Neue',Arial,sans-serif}\
 .bd.on .dlg{transform:none}\
-.art{position:relative;background:radial-gradient(120% 80% at 50% 38%,#3a2d14 0%,#16120b 55%,#0a0908 100%);display:flex;align-items:center;justify-content:center;padding:34px 28px;overflow:hidden}\
-.cover{position:relative;z-index:1;width:100%;max-width:210px;aspect-ratio:1080/1669;object-fit:cover;border-radius:2px;box-shadow:0 22px 40px rgba(0,0,0,.7),0 0 0 1px rgba(201,162,78,.35),0 0 60px rgba(201,162,78,.18);transform:rotate(-2.5deg)}\
-.ribbon{position:absolute;z-index:2;top:22px;left:-38px;transform:rotate(-38deg);background:#c9a24e;color:#14110b;font:800 12px/1 'Barlow',Arial,sans-serif;letter-spacing:.22em;padding:7px 48px;box-shadow:0 4px 12px rgba(0,0,0,.4)}\
-.body{padding:40px 42px 30px}\
-.eyebrow{font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#c9a24e;margin:0 0 14px;display:flex;align-items:center;gap:10px}\
-.eyebrow:after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,162,78,.6),transparent)}\
-h2{text-wrap:balance;font-family:'Oswald',Impact,sans-serif;text-transform:uppercase;font-weight:600;font-size:33px;line-height:1.08;margin:0 0 14px;color:#f4ecd9;letter-spacing:-.005em}\
-h2 em{font-style:normal;color:#d9b45f;display:block;margin-top:4px}\
 .dlg:focus{outline:none}\
-.cta{font-family:'Barlow',Arial,sans-serif;font-weight:600;font-size:19px;line-height:1.35;margin:0 0 14px;color:#efe6d2}\
-.cta b{font-family:'Cinzel',Georgia,serif;color:#d9b45f;font-weight:800;white-space:nowrap;letter-spacing:.02em}\
-.lede{font-size:15.5px;line-height:1.55;color:#c8bea8;margin:0 0 20px}\
-.lede i{color:#e6dcc4}\
-form{display:grid;grid-template-columns:1fr 1.35fr;gap:10px;margin:0}\
-input{width:100%;font:inherit;font-size:16px;color:#f4ecd9;background:#1a1814;border:1px solid #3b3529;border-radius:4px;padding:13px 14px;outline:none;transition:border-color .2s,box-shadow .2s}\
-input::placeholder{color:#7f7663}\
-input:focus{border-color:#c9a24e;box-shadow:0 0 0 3px rgba(201,162,78,.2)}\
-button.go{grid-column:1/-1;font:800 15px/1 'Barlow',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#14110b;background:linear-gradient(180deg,#dcb766,#c39a45);border:0;border-radius:4px;padding:16px 18px;cursor:pointer;box-shadow:0 6px 18px rgba(201,162,78,.25);transition:transform .15s,filter .15s}\
-button.go:hover{filter:brightness(1.06);transform:translateY(-1px)}\
+.art{position:relative;min-height:430px;background:#3a3220 center 72%/cover no-repeat;overflow:hidden}\
+.art:after{content:'';position:absolute;inset:auto 0 0 0;height:46%;background:linear-gradient(180deg,rgba(28,26,17,0),rgba(28,26,17,.78))}\
+.cover{position:absolute;z-index:1;left:26px;bottom:24px;width:118px;aspect-ratio:1080/1669;object-fit:cover;border-radius:2px;box-shadow:0 16px 30px rgba(0,0,0,.55),0 0 0 1px rgba(241,234,219,.25);transform:rotate(-3deg)}\
+.tag{position:absolute;z-index:1;left:160px;bottom:30px;font:700 12px/1 'Barlow',Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#f1eadb;border:1px solid rgba(241,234,219,.6);padding:7px 10px;border-radius:3px}\
+.body{padding:46px 44px 30px;display:flex;flex-direction:column;justify-content:center}\
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#7a6431;margin:0 0 16px;display:flex;align-items:center;gap:10px}\
+.eyebrow:after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(122,100,49,.5),transparent)}\
+h2{text-wrap:balance;font-family:'Oswald',Impact,sans-serif;text-transform:uppercase;font-weight:600;font-size:38px;line-height:1.04;margin:0 0 16px;color:#25231a;letter-spacing:-.005em}\
+h2 em{font-style:normal;color:#4b5530;display:block;margin-top:2px}\
+.lede{font-size:16.5px;line-height:1.5;color:#4d4636;margin:0 0 22px}\
+.lede b span{white-space:nowrap}\
+.lede b{display:block;font-family:'Cinzel',Georgia,serif;font-weight:800;color:#2a261c;font-size:17px;letter-spacing:.02em;margin-bottom:4px}\
+.lede i{color:#2a261c}\
+form{display:flex;gap:8px;margin:0;flex-wrap:wrap}\
+input{flex:1 1 200px;min-width:0;font:inherit;font-size:16px;color:#25231a;background:#fbf8f1;border:1px solid #cfc3a6;border-radius:4px;padding:13px 14px;outline:none;transition:border-color .2s,box-shadow .2s}\
+input::placeholder{color:#958a72}\
+input:focus{border-color:#4b5530;box-shadow:0 0 0 3px rgba(75,85,48,.18)}\
+button.go{flex:0 0 auto;font:700 14px/1 'Barlow',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#f1eadb;background:#3f4728;border:0;border-radius:4px;padding:15px 20px;cursor:pointer;transition:background .15s,transform .15s}\
+button.go:hover{background:#4b5530;transform:translateY(-1px)}\
 button.go:disabled{opacity:.6;cursor:wait;transform:none}\
-.fine{font-size:12.5px;line-height:1.45;color:#8a816d;margin:12px 0 0}\
-.fine a{color:#b59a5e}\
-.err{grid-column:1/-1;color:#f0a58a;font-size:13.5px;margin:0}\
+.fine{font-size:12.5px;line-height:1.45;color:#857a62;margin:12px 0 0}\
+.fine a{color:#6b5a33}\
+.err{flex-basis:100%;color:#9a3b22;font-size:13.5px;margin:0}\
 .err:empty{display:none}\
-.no{display:block;margin:12px auto 0;background:none;border:0;color:#8a816d;font:inherit;font-size:13px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:6px}\
-.no:hover{color:#c8bea8}\
-.x{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:50%;border:0;background:transparent;color:#a99f88;font-size:26px;line-height:40px;cursor:pointer;z-index:3}\
-.x:hover{background:rgba(255,255,255,.06);color:#f4ecd9}\
+.no{align-self:flex-start;margin:10px 0 0 -6px;background:none;border:0;color:#857a62;font:inherit;font-size:13px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:6px}\
+.no:hover{color:#4d4636}\
+.x{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:50%;border:0;background:transparent;color:#857a62;font-size:26px;line-height:40px;cursor:pointer;z-index:3}\
+.x:hover{background:rgba(42,38,28,.07);color:#25231a}\
 .ok{display:none}\
-.ok h3{font-family:'Oswald',Impact,sans-serif;text-transform:uppercase;font-weight:600;font-size:32px;margin:0 0 10px;color:#f4ecd9}\
-.ok p{font-size:16px;line-height:1.55;color:#c8bea8;margin:0 0 16px}\
-.ok .vs{font-family:'Barlow',Arial,sans-serif;font-weight:500;font-style:italic;color:#d9b45f;font-size:17px;border-left:2px solid #c9a24e;padding-left:14px;margin:18px 0 22px}\
-.ok a.btn{display:inline-block;color:#14110b;background:#c9a24e;text-decoration:none;font-weight:800;letter-spacing:.1em;text-transform:uppercase;font-size:13px;padding:13px 18px;border-radius:4px}\
+.ok h3{font-family:'Oswald',Impact,sans-serif;text-transform:uppercase;font-weight:600;font-size:34px;margin:0 0 10px;color:#25231a}\
+.ok p{font-size:16px;line-height:1.55;color:#4d4636;margin:0 0 16px}\
+.ok .vs{font-style:italic;color:#4b5530;font-size:17px;border-left:2px solid #8f8a55;padding-left:14px;margin:16px 0 22px}\
+.ok a.btn{display:inline-block;color:#f1eadb;background:#3f4728;text-decoration:none;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:13px;padding:13px 18px;border-radius:4px}\
 .done .form-area{display:none}.done .ok{display:block}\
-:focus-visible{outline:2px solid #e3c47a;outline-offset:2px}\
-.tag{display:none;position:relative;z-index:1;font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#14110b;background:#c9a24e;padding:6px 10px;border-radius:3px;align-self:center}\
+:focus-visible{outline:2px solid #4b5530;outline-offset:2px}\
 @media (max-width:720px){\
  .bd{align-items:flex-end;padding:0}\
- .dlg{grid-template-columns:1fr;max-width:none;border-radius:16px 16px 0 0;border-left:0;border-right:0;border-bottom:0;max-height:92vh;overflow:auto;transform:translateY(40px)}\
- .art{padding:18px 20px 0;background:linear-gradient(180deg,#2a2112,#0f0e0c);justify-content:flex-start;gap:16px}\
- .cover{max-width:62px;transform:rotate(-3deg)}\
- .form-area .eyebrow{display:none}\
- input{padding:12px 14px}\
+ .dlg{grid-template-columns:1fr;max-width:none;border-radius:16px 16px 0 0;max-height:92vh;overflow:auto;transform:translateY(40px)}\
+ .art{min-height:0;height:190px;background-position:center 58%}\
+ .art:after{height:60%}\
+ .cover{width:64px;left:20px;bottom:16px}\
+ .tag{left:98px;bottom:20px;font-size:11px}\
+ .x{background:rgba(241,234,219,.85);color:#25231a}\
+ .body{padding:20px 20px 18px}\
+ .eyebrow{display:none}\
+ h2{font-size:30px;margin-bottom:12px}\
+ .lede{font-size:15.5px;margin-bottom:16px}\
+ .lede b{font-size:16px}\
+ input,button.go{flex-basis:100%}\
  .fine{font-size:12px}\
- .ribbon{display:none}\
- .tag{display:block}\
- .body{padding:14px 20px 20px}\
- h2{font-size:27px;margin-bottom:10px}\
- .cta{font-size:17px;margin-bottom:10px}\
- .lede{font-size:14.5px;line-height:1.5;margin-bottom:14px}\
- form{grid-template-columns:1fr}\
+ .no{display:block;margin:8px auto 0}\
 }\
 @media (prefers-reduced-motion:reduce){.bd,.dlg{transition:none}}";
 
@@ -120,27 +122,25 @@ button.go:disabled{opacity:.6;cursor:wait;transform:none}\
 <div class="bd" part="backdrop">\
  <div class="dlg" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="myp-h" aria-describedby="myp-d">\
   <button class="x" type="button" aria-label="Close">&times;</button>\
-  <div class="art"><span class="ribbon">FREE</span><img class="cover" alt="Man Your Post by Philip Goodwin, edited by Scott T. Brown" src=""><span class="tag">Free booklet</span></div>\
+  <div class="art" role="img" aria-label="A father at his cottage gate, his family in the doorway"><img class="cover" alt="Man Your Post by Philip Goodwin, edited by Scott T. Brown" src=""><span class="tag">Free booklet</span></div>\
   <div class="body">\
    <div class="form-area">\
-    <p class="eyebrow">A free booklet for husbands &amp; fathers</p>\
-    <h2 id="myp-h">Liberalism may be winning in our government. <em>It doesn&rsquo;t have to win in your home.</em></h2>\
-    <p class="cta">Men, fortify your household. <b>Man your post.</b></p>\
-    <p class="lede" id="myp-d">Join the Church &amp; Family Life email list and we&rsquo;ll send you Philip Goodwin&rsquo;s <i>Man Your Post</i>&mdash;a short, bracing call from Joshua 24:15 to lead your family in the worship of God.</p>\
+    <p class="eyebrow">For husbands &amp; fathers</p>\
+    <h2 id="myp-h">Liberalism may be winning. <em>Not under your roof.</em></h2>\
+    <p class="lede" id="myp-d"><b><span>Men, fortify your household.</span> <span>Man your post.</span></b>Get Philip Goodwin&rsquo;s 1655 booklet on Joshua 24:15: lead your family in the worship of God.</p>\
     <form novalidate>\
-     <input name="fname" type="text" autocomplete="given-name" placeholder="First name" aria-label="First name">\
-     <input name="email" type="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required>\
+     <input name="email" type="email" autocomplete="email" placeholder="Your email address" aria-label="Email address" required>\
+     <button class="go" type="submit">Send it free</button>\
      <p class="err" role="alert"></p>\
-     <button class="go" type="submit">Send my free copy</button>\
     </form>\
-    <p class="fine"><span class="offer"></span> You&rsquo;ll also receive occasional emails from Church &amp; Family Life. Unsubscribe anytime. <a class="priv" href="#" target="_blank" rel="noopener">Privacy</a></p>\
+    <p class="fine"><span class="offer"></span> <a class="priv" href="#" target="_blank" rel="noopener">Privacy</a></p>\
     <button class="no" type="button">No thanks</button>\
    </div>\
    <div class="ok" aria-live="polite">\
     <p class="eyebrow">You&rsquo;re in</p>\
     <h3>Check your inbox.</h3>\
-    <p>Your free copy of <i>Man Your Post</i> is on its way. Read it this week&mdash;then read it with your family.</p>\
-    <p class="vs">&ldquo;But as for me and my house, we will serve the Lord.&rdquo; &mdash;Joshua 24:15</p>\
+    <p>Your free copy of <i>Man Your Post</i> is on its way. Read it this week, then read it with your family.</p>\
+    <p class="vs">&ldquo;But as for me and my house, we will serve the Lord.&rdquo; Joshua 24:15</p>\
     <a class="btn shop" href="#">Print copies for your men&rsquo;s group &rarr;</a>\
    </div>\
   </div>\
@@ -166,6 +166,7 @@ button.go:disabled{opacity:.6;cursor:wait;transform:none}\
     root.innerHTML = "<style>" + CSS + "</style>" + HTML;
     bd = root.querySelector(".bd"); dlg = root.querySelector(".dlg");
     root.querySelector(".cover").src = CFG.coverUrl;
+    root.querySelector(".art").style.backgroundImage = "url(\"" + CFG.artUrl + "\")";
     root.querySelector(".offer").textContent = CFG.offerLine;
     root.querySelector(".priv").href = CFG.privacyUrl;
     root.querySelector(".shop").href = CFG.productUrl + (CFG.productUrl.indexOf("?") < 0 ? "?" : "&") + "utm_source=site&utm_medium=popup&utm_campaign=man-your-post";
@@ -204,7 +205,7 @@ button.go:disabled{opacity:.6;cursor:wait;transform:none}\
     requestAnimationFrame(function () { requestAnimationFrame(function () { bd.classList.add("on"); }); });
     setTimeout(function () {
       if (dlg.classList.contains("done")) return;
-      var i = matchMedia("(max-width:720px)").matches ? dlg : root.querySelector('input[name="fname"]');
+      var i = matchMedia("(max-width:720px)").matches ? dlg : root.querySelector('input[name="email"]');
       if (i) i.focus({ preventScroll: true });
     }, 360);
     track("open", source || "manual");
@@ -232,11 +233,11 @@ button.go:disabled{opacity:.6;cursor:wait;transform:none}\
     });
   }
 
-  function send(fname, email) {
+  function send(email) {
     if (CFG.demo || !CFG.endpoint) return new Promise(function (r) { setTimeout(function () { r({ ok: true, demo: true }); }, 700); });
     if (CFG.method === "mailchimp-jsonp") {
       var u = CFG.endpoint.replace("/post?", "/post-json?") +
-        "&EMAIL=" + encodeURIComponent(email) + "&FNAME=" + encodeURIComponent(fname) +
+        "&EMAIL=" + encodeURIComponent(email) +
         (CFG.tag ? "&tags=" + encodeURIComponent(CFG.tag) : "");
       return jsonp(u).then(function (d) {
         if (d.result === "success" || /already subscribed/i.test(d.msg || "")) return { ok: true };
@@ -245,25 +246,25 @@ button.go:disabled{opacity:.6;cursor:wait;transform:none}\
     }
     return fetch(CFG.endpoint, {
       method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ firstName: fname, email: email, tags: [CFG.tag], source: "popup:man-your-post", page: location.href })
+      body: JSON.stringify({ email: email, tags: [CFG.tag], source: "popup:man-your-post", page: location.href })
     }).then(function (r) { if (!r.ok) throw new Error("We couldn't sign you up just now. Please try again."); return { ok: true }; });
   }
 
   function submit(e) {
     e.preventDefault();
     var f = e.target, err = root.querySelector(".err"), btn = f.querySelector(".go");
-    var fname = f.fname.value.trim(), email = f.email.value.trim();
+    var email = f.email.value.trim();
     err.textContent = "";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = "Please enter a valid email address."; f.email.focus(); return; }
     btn.disabled = true; btn.textContent = "Sending…";
-    send(fname, email).then(function () {
+    send(email).then(function () {
       store.set({ subscribed: Date.now() });
       dlg.classList.add("done");
       track("subscribe", CFG.tag);
       setTimeout(function () { dlg.focus({ preventScroll: true }); }, 50);
     }).catch(function (x) {
       err.textContent = x && x.message && x.message !== "network" ? x.message : "We couldn't sign you up just now. Please try again.";
-      btn.disabled = false; btn.textContent = "Send my free copy";
+      btn.disabled = false; btn.textContent = "Send it free";
     });
   }
 
@@ -285,7 +286,7 @@ button.go:disabled{opacity:.6;cursor:wait;transform:none}\
   function boot() {
     var s = store.get(); store.set({ views: (s.views || 0) + 1 });
     if (forced() && !excluded()) { open("link"); return; }
-    if (eligible()) { (new Image()).src = CFG.coverUrl; arm(); } // warm the cover so it's there when the popup opens
+    if (eligible()) { (new Image()).src = CFG.coverUrl; (new Image()).src = CFG.artUrl; arm(); } // warm the cover so it's there when the popup opens
   }
 
   // Links anywhere on the site: <a href="#man-your-post"> or [data-myp-open] opens it without a reload.

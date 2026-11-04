@@ -2,20 +2,19 @@
 
 Review site: https://blueboxdoctor.github.io/cfl-man-your-post-review/
 
-## Popup copy (website)
-- Eyebrow: A FREE BOOKLET FOR HUSBANDS & FATHERS
-- Headline: **Liberalism may be winning in our government. It doesn't have to win in your home.**
-- Line 2: Men, fortify your household. **Man your post.**
-- Body: Join the Church & Family Life email list and we'll send you Philip Goodwin's *Man Your Post*, a short, bracing call from Joshua 24:15 to lead your family in the worship of God.
-- Button: SEND MY FREE COPY
-- Fine print: Free digital copy, delivered to your inbox. You'll also receive occasional emails from Church & Family Life. Unsubscribe anytime.
+## Popup copy (website), v4
+- Eyebrow (desktop only): FOR HUSBANDS & FATHERS
+- Headline: **Liberalism may be winning. Not under your roof.**
+- Line 2: **Men, fortify your household. Man your post.**
+- Body: Get Philip Goodwin's 1655 booklet on Joshua 24:15: lead your family in the worship of God.
+- Field: email only (first name removed)
+- Button: SEND IT FREE
+- Fine print: Free digital copy by email, plus occasional Church & Family Life updates. Unsubscribe anytime. Privacy
 - Success: "Check your inbox." + Joshua 24:15 + "Print copies for your men's group" (product link)
 
-What changed from the original line: "but not in your home" became "It doesn't have to win in your home". It's a call to action, not a claim, and it reads stronger split into two sentences. "Men fortify your home by maning your post" became "Men, fortify your household. Man your post." That adds the comma, fixes "maning", and makes the book's title the last words.
+v4 changes (David, 12:33pm): cut "in our government"; "It doesn't have to win in your home" became "Not under your roof."; the sign-up pitch folded into one Goodwin line; first-name field dropped. Colors moved off black/gold to the painting's parchment, moss and umber.
 
-Other headline options:
-- B: Washington may belong to liberalism. Your home doesn't have to.
-- C: No election decides who leads your home.
+Alternate second lines: "Not in your home." · "Your home holds."
 
 ## Social posts
 
@@ -27,7 +26,7 @@ A lot of Christian families woke up this morning discouraged by last night's res
 
 Here is what no election can change: God has not handed your household to Washington. He has handed it to you.
 
-Liberalism may be winning in our government. It doesn't have to win in your home.
+Liberalism may be winning. Not under your roof.
 
 More than 350 years ago, Puritan pastor Philip Goodwin warned that the enemies of church and nation "attack the home first." His answer wasn't panic. It was a man at his post: praying with his wife and children, opening the Scriptures at his own table, leading his household in the worship of God, and guarding the door.
 
@@ -45,7 +44,7 @@ Image: social/feed-1080x1350.jpg (alt: social/story-1080x1920.jpg)
 ```
 No election decides who leads your home.
 
-Liberalism may be winning in our government. It doesn't have to win in your household.
+Liberalism may be winning. Not under your roof.
 
 In 1655, Philip Goodwin warned that the enemies of church and nation "attack the home first." The answer is not panic. It is a father at his post: the Word open at his table, his family on their knees, the door guarded.
 
@@ -62,7 +61,7 @@ Image: social/wide-1600x900.jpg
 ```
 No election decides who leads your home.
 
-Liberalism may be winning in our government. It doesn't have to win in your household.
+Liberalism may be winning. Not under your roof.
 
 Men, man your post.
 

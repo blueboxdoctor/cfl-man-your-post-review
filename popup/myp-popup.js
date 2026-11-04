@@ -1,5 +1,5 @@
 /*!
- * Church & Family Life — "Man Your Post" free-booklet email popup  (v2, 2026-11-04: email only, painting panel, parchment + moss palette)
+ * Church & Family Life — "Man Your Post" free-booklet email popup  (v2, 2026-11-04: email only, big-book panel, parchment + moss palette)
  * Drop-in, no dependencies. Renders inside a Shadow DOM so site CSS can't bleed in.
  *
  * Install (Exo):
@@ -29,7 +29,6 @@
     productUrl: "https://churchandfamilylife.com/products/6ac6570d68c8897ef2d80484",
     coverUrl: "https://cfl-mango.s3.us-east-1.amazonaws.com/assets/products/6ac6570d68c8897ef2d80484/image.jpg",
     privacyUrl: "https://churchandfamilylife.com/privacy",
-    artUrl: "https://blueboxdoctor.github.io/cfl-man-your-post-review/art/painting-main.jpg", // Exo: host on CFL S3 before launch
     offerLine: "Free digital copy by email, plus occasional Church & Family Life updates. Unsubscribe anytime.",
     demo: false
   }, window.MYP_POPUP || {});
@@ -64,10 +63,10 @@
 .dlg{position:relative;width:100%;max-width:780px;display:grid;grid-template-columns:320px 1fr;background:#f1eadb;color:#2a261c;box-shadow:0 30px 80px rgba(20,16,8,.45);border-radius:6px;overflow:hidden;transform:translateY(14px) scale(.985);transition:transform .45s cubic-bezier(.2,.8,.2,1);font-family:'Barlow','Helvetica Neue',Arial,sans-serif}\
 .bd.on .dlg{transform:none}\
 .dlg:focus{outline:none}\
-.art{position:relative;min-height:430px;background:#3a3220 center 72%/cover no-repeat;overflow:hidden}\
-.art:after{content:'';position:absolute;inset:auto 0 0 0;height:46%;background:linear-gradient(180deg,rgba(28,26,17,0),rgba(28,26,17,.78))}\
-.cover{position:absolute;z-index:1;left:26px;bottom:24px;width:118px;aspect-ratio:1080/1669;object-fit:cover;border-radius:2px;box-shadow:0 16px 30px rgba(0,0,0,.55),0 0 0 1px rgba(241,234,219,.25);transform:rotate(-3deg)}\
-.tag{position:absolute;z-index:1;left:160px;bottom:30px;font:700 12px/1 'Barlow',Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#f1eadb;border:1px solid rgba(241,234,219,.6);padding:7px 10px;border-radius:3px}\
+.art{position:relative;min-height:440px;background:radial-gradient(90% 70% at 50% 42%,#56603a 0%,#3f4728 55%,#2f3520 100%);display:flex;align-items:center;justify-content:center;padding:34px 30px;overflow:hidden}\
+\
+.cover{position:relative;z-index:1;width:100%;max-width:250px;aspect-ratio:1080/1669;object-fit:cover;border-radius:3px;box-shadow:0 28px 50px rgba(10,10,4,.6),0 6px 14px rgba(10,10,4,.4),0 0 0 1px rgba(241,234,219,.12)}\
+.tag{position:absolute;z-index:2;left:50%;bottom:16px;transform:translateX(-50%);white-space:nowrap;font:700 12px/1 'Barlow',Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#f1eadb;border:1px solid rgba(241,234,219,.6);padding:7px 10px;border-radius:3px}\
 .body{padding:46px 44px 30px;display:flex;flex-direction:column;justify-content:center}\
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#7a6431;margin:0 0 16px;display:flex;align-items:center;gap:10px}\
 .eyebrow:after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(122,100,49,.5),transparent)}\
@@ -102,10 +101,10 @@ button.go:disabled{opacity:.6;cursor:wait;transform:none}\
 @media (max-width:720px){\
  .bd{align-items:flex-end;padding:0}\
  .dlg{grid-template-columns:1fr;max-width:none;border-radius:16px 16px 0 0;max-height:92vh;overflow:auto;transform:translateY(40px)}\
- .art{min-height:0;height:190px;background-position:center 58%}\
- .art:after{height:60%}\
- .cover{width:64px;left:20px;bottom:16px}\
- .tag{left:98px;bottom:20px;font-size:11px}\
+ .art{min-height:0;padding:22px 20px 38px}\
+\
+ .cover{max-width:132px}\
+ .tag{bottom:12px;font-size:11px}\
  .x{background:rgba(241,234,219,.85);color:#25231a}\
  .body{padding:20px 20px 18px}\
  .eyebrow{display:none}\
@@ -122,7 +121,7 @@ button.go:disabled{opacity:.6;cursor:wait;transform:none}\
 <div class="bd" part="backdrop">\
  <div class="dlg" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="myp-h" aria-describedby="myp-d">\
   <button class="x" type="button" aria-label="Close">&times;</button>\
-  <div class="art" role="img" aria-label="A father at his cottage gate, his family in the doorway"><img class="cover" alt="Man Your Post by Philip Goodwin, edited by Scott T. Brown" src=""><span class="tag">Free booklet</span></div>\
+  <div class="art"><img class="cover" alt="Man Your Post by Philip Goodwin, edited by Scott T. Brown" src=""><span class="tag">Free booklet</span></div>\
   <div class="body">\
    <div class="form-area">\
     <p class="eyebrow">For husbands &amp; fathers</p>\
@@ -166,7 +165,6 @@ button.go:disabled{opacity:.6;cursor:wait;transform:none}\
     root.innerHTML = "<style>" + CSS + "</style>" + HTML;
     bd = root.querySelector(".bd"); dlg = root.querySelector(".dlg");
     root.querySelector(".cover").src = CFG.coverUrl;
-    root.querySelector(".art").style.backgroundImage = "url(\"" + CFG.artUrl + "\")";
     root.querySelector(".offer").textContent = CFG.offerLine;
     root.querySelector(".priv").href = CFG.privacyUrl;
     root.querySelector(".shop").href = CFG.productUrl + (CFG.productUrl.indexOf("?") < 0 ? "?" : "&") + "utm_source=site&utm_medium=popup&utm_campaign=man-your-post";
@@ -286,7 +284,7 @@ button.go:disabled{opacity:.6;cursor:wait;transform:none}\
   function boot() {
     var s = store.get(); store.set({ views: (s.views || 0) + 1 });
     if (forced() && !excluded()) { open("link"); return; }
-    if (eligible()) { (new Image()).src = CFG.coverUrl; (new Image()).src = CFG.artUrl; arm(); } // warm the cover so it's there when the popup opens
+    if (eligible()) { (new Image()).src = CFG.coverUrl; arm(); } // warm the cover so it's there when the popup opens
   }
 
   // Links anywhere on the site: <a href="#man-your-post"> or [data-myp-open] opens it without a reload.

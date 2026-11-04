@@ -23,6 +23,7 @@ body{background:#f1eadb;color:#25231a;font-family:'Barlow',Arial,sans-serif;-web
 .eb:after{background:linear-gradient(90deg,rgba(122,100,49,.55),transparent)}
 .eb.l:before{display:none}
 .cv{border-radius:3px;box-shadow:0 18px 36px rgba(40,30,10,.38),0 2px 6px rgba(40,30,10,.25)}
+.hero{border-radius:3px;box-shadow:0 30px 60px rgba(25,20,8,.5),0 8px 18px rgba(25,20,8,.35),0 0 0 1px rgba(255,255,255,.08)}
 .free{display:inline-block;background:#3f4728;color:#f1eadb;font-weight:800;letter-spacing:.18em;text-transform:uppercase;border-radius:3px}
 .mark{font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#7a6f55}
 `;
@@ -36,94 +37,69 @@ const fadeDown = (top, h) => `<div class="shade" style="top:${top}px;height:${h}
 const cards = {
   "feed-1080x1350": { w:1080, h:1350, html: `
 <div class="c" style="width:1080px;height:1350px">
- ${paint(BG, "center 64%", "top:0;height:705px")}
- ${fadeDown(655,50)}
- <div style="position:absolute;top:735px;left:80px;right:80px;text-align:center">
-  <div class="eb" style="font-size:19px;margin-bottom:24px">To the men of the house</div>
-  <div class="ser" style="font-size:76px;line-height:1.02;font-weight:700">Liberalism may be winning.</div>
-  <div class="ser gold" style="font-size:76px;line-height:1.02;font-weight:700;margin-top:8px">Not under your roof.</div>
- </div>
- <div style="position:absolute;left:80px;right:80px;bottom:62px;display:flex;align-items:center;gap:40px">
-  <img class="cv" src="${COVER}" style="width:150px;transform:rotate(-3deg)">
-  <div>
-   <div class="ser cin" style="font-size:46px;line-height:1.05">Men, man your post.</div>
-   <div style="font-size:25px;line-height:1.35;color:#4d4636;margin-top:12px">Get Philip Goodwin’s booklet <span class="free" style="font-size:19px;padding:5px 12px;vertical-align:3px">Free</span><br>when you join our email list.</div>
-   <div class="mark" style="font-size:17px;margin-top:14px">churchandfamilylife.com</div>
-  </div>
+ ${paint(BG, "center 60%", "top:0;height:700px")}
+ ${fadeDown(640,60)}
+ <img class="cv hero" src="${COVER}" style="position:absolute;left:405px;top:548px;width:270px">
+ <div style="position:absolute;top:1000px;left:70px;right:70px;text-align:center">
+  <div class="ser" style="font-size:64px;line-height:1.04;font-weight:700">Liberalism may be winning.</div>
+  <div class="ser gold" style="font-size:64px;line-height:1.04;font-weight:700;margin-top:4px">Not under your roof.</div>
+  <div class="ser cin" style="font-size:40px;line-height:1.1;margin-top:24px">Men, man your post.</div>
+  <div style="font-size:23px;line-height:1.35;color:#4d4636;margin-top:10px">Get Philip Goodwin’s booklet <span class="free" style="font-size:17px;padding:4px 10px;vertical-align:2px">Free</span> when you join our email list.</div>
+  <div class="mark" style="font-size:16px;margin-top:14px">churchandfamilylife.com</div>
  </div>
 </div>` },
 
   "square-1080": { w:1080, h:1080, html: `
 <div class="c" style="width:1080px;height:1080px">
- ${paint(BG, "center 62%", "top:0;height:625px")}
- ${fadeDown(580,45)}
- <div style="position:absolute;top:660px;left:70px;right:70px;text-align:center">
-  <div class="ser" style="font-size:66px;line-height:1.02;font-weight:700">Liberalism may be winning.</div>
-  <div class="ser gold" style="font-size:66px;line-height:1.02;font-weight:700;margin-top:6px">Not under your roof.</div>
- </div>
- <div style="position:absolute;left:70px;right:70px;bottom:58px;display:flex;align-items:center;justify-content:center;gap:34px">
-  <img class="cv" src="${COVER}" style="width:108px;transform:rotate(-3deg)">
-  <div>
-   <div class="ser cin" style="font-size:38px;line-height:1.05">Men, man your post.</div>
-   <div style="font-size:22px;line-height:1.35;color:#4d4636;margin-top:8px">Free booklet when you join our email list.</div>
-   <div class="mark" style="font-size:15px;margin-top:10px">churchandfamilylife.com</div>
-  </div>
+ ${paint(BG, "center 58%", "top:0;height:560px")}
+ ${fadeDown(510,50)}
+ <img class="cv hero" src="${COVER}" style="position:absolute;left:440px;top:448px;width:200px">
+ <div style="position:absolute;top:782px;left:60px;right:60px;text-align:center">
+  <div class="ser" style="font-size:52px;line-height:1.04;font-weight:700">Liberalism may be winning.</div>
+  <div class="ser gold" style="font-size:52px;line-height:1.04;font-weight:700;margin-top:2px">Not under your roof.</div>
+  <div class="ser cin" style="font-size:32px;line-height:1.1;margin-top:16px">Men, man your post.</div>
+  <div style="font-size:20px;line-height:1.35;color:#4d4636;margin-top:8px">Free booklet when you join our email list · <span class="mark" style="font-size:15px">churchandfamilylife.com</span></div>
  </div>
 </div>` },
 
   "story-1080x1920": { w:1080, h:1920, html: `
 <div class="c" style="width:1080px;height:1920px">
- ${paint(BG, "center 72%", "top:0;height:985px")}
- ${fadeDown(930,55)}
- <div style="position:absolute;top:1010px;left:60px;right:60px;text-align:center">
-  <div class="eb" style="font-size:21px;margin-bottom:28px">To the men of the house</div>
-  <div class="ser" style="font-size:86px;line-height:1.02;font-weight:700">Liberalism may be winning.</div>
-  <div class="ser gold" style="font-size:86px;line-height:1.02;font-weight:700;margin-top:10px">Not under your roof.</div>
+ ${paint(BG, "center 50%", "top:0;height:900px")}
+ ${fadeDown(830,70)}
+ <img class="cv hero" src="${COVER}" style="position:absolute;left:345px;top:620px;width:390px">
+ <div style="position:absolute;top:1255px;left:60px;right:60px;text-align:center">
+  <div class="ser" style="font-size:76px;line-height:1.03;font-weight:700">Liberalism may be winning.</div>
+  <div class="ser gold" style="font-size:76px;line-height:1.03;font-weight:700;margin-top:4px">Not under your roof.</div>
+  <div class="ser cin" style="font-size:50px;line-height:1.1;margin-top:36px">Men, man your post.</div>
+  <div style="font-size:29px;line-height:1.35;color:#4d4636;margin-top:12px">Get the booklet <span class="free" style="font-size:21px;padding:5px 12px;vertical-align:3px">Free</span> when you join our email list.</div>
  </div>
- <div style="position:absolute;left:90px;right:90px;bottom:215px;display:flex;align-items:center;gap:44px">
-  <img class="cv" src="${COVER}" style="width:170px;transform:rotate(-3deg)">
-  <div>
-   <div class="ser cin" style="font-size:52px;line-height:1.05">Men, man your post.</div>
-   <div style="font-size:29px;line-height:1.35;color:#4d4636;margin-top:12px">Get the booklet <span class="free" style="font-size:21px;padding:5px 12px;vertical-align:3px">Free</span><br>when you join our email list.</div>
-  </div>
- </div>
- <div class="mark" style="position:absolute;left:0;right:0;bottom:140px;text-align:center;font-size:22px">Tap the link · churchandfamilylife.com</div>
+ <div class="mark" style="position:absolute;left:0;right:0;bottom:190px;text-align:center;font-size:22px">Tap the link · churchandfamilylife.com</div>
 </div>` },
 
   "wide-1600x900": { w:1600, h:900, html: `
 <div class="c" style="width:1600px;height:900px">
- ${paint(BG, "center 80%", "top:0;bottom:0;left:760px;right:0")}
- <div class="shade" style="left:760px;width:160px;right:auto;background:linear-gradient(90deg,#f1eadb,rgba(241,234,219,0))"></div>
- <div style="position:absolute;top:92px;left:84px;width:660px">
-  <div class="eb l" style="font-size:16px;margin-bottom:28px">To the men of the house</div>
-  <div class="ser" style="font-size:78px;line-height:1.02;font-weight:700">Liberalism may be winning.</div>
-  <div class="ser gold" style="font-size:78px;line-height:1.02;font-weight:700;margin-top:10px">Not under your roof.</div>
-  <div style="display:flex;align-items:center;gap:28px;margin-top:48px">
-   <img class="cv" src="${COVER}" style="width:116px;transform:rotate(-3deg)">
-   <div>
-    <div class="ser cin" style="font-size:36px">Men, man your post.</div>
-    <div style="font-size:21px;color:#4d4636;margin-top:8px">Free booklet when you join our email list.</div>
-    <div class="mark" style="font-size:15px;margin-top:12px">churchandfamilylife.com</div>
-   </div>
-  </div>
+ ${paint(BG, "center 80%", "top:0;bottom:0;left:900px;right:0")}
+ <div class="shade" style="left:900px;width:140px;right:auto;background:linear-gradient(90deg,#f1eadb,rgba(241,234,219,0))"></div>
+ <div style="position:absolute;top:150px;left:80px;width:560px">
+  <div class="ser" style="font-size:72px;line-height:1.02;font-weight:700">Liberalism may be winning.</div>
+  <div class="ser gold" style="font-size:72px;line-height:1.02;font-weight:700;margin-top:6px">Not under your roof.</div>
+  <div class="ser cin" style="font-size:38px;margin-top:40px">Men, man your post.</div>
+  <div style="font-size:22px;color:#4d4636;margin-top:10px">Free booklet when you join our email list.</div>
+  <div class="mark" style="font-size:15px;margin-top:14px">churchandfamilylife.com</div>
  </div>
+ <img class="cv hero" src="${COVER}" style="position:absolute;left:705px;top:105px;width:446px">
 </div>` },
 
   "quote-1080x1350": { w:1080, h:1350, html: `
 <div class="c" style="width:1080px;height:1350px">
- ${paint(BG2, "center 62%", "top:0;height:740px")}
- ${fadeDown(690,50)}
- <div style="position:absolute;top:770px;left:92px;right:92px;text-align:center">
-  <div class="ser q" style="font-size:44px;line-height:1.25"><span class="gold">“</span>Become a faithful keeper of your own vineyard, a watchful overseer of your household, a diligent shepherd of your flock, and a <span class="gold">courageous defender of your fort.</span>”</div>
-  <div class="eb" style="font-size:18px;margin-top:26px">Philip Goodwin · 1655</div>
- </div>
- <div style="position:absolute;left:92px;right:92px;bottom:58px;display:flex;align-items:center;gap:38px">
-  <img class="cv" src="${COVER}" style="width:118px;transform:rotate(-3deg)">
-  <div>
-   <div class="ser cin" style="font-size:42px;line-height:1.05">Man Your Post</div>
-   <div style="font-size:24px;line-height:1.35;color:#4d4636;margin-top:10px">Free when you join our email list.</div>
-   <div class="mark" style="font-size:16px;margin-top:12px">churchandfamilylife.com</div>
-  </div>
+ ${paint(BG2, "center 58%", "top:0;height:600px")}
+ ${fadeDown(545,55)}
+ <img class="cv hero" src="${COVER}" style="position:absolute;left:420px;top:470px;width:240px">
+ <div style="position:absolute;top:880px;left:92px;right:92px;text-align:center">
+  <div class="ser q" style="font-size:40px;line-height:1.24"><span class="gold">“</span>Become a faithful keeper of your own vineyard, a watchful overseer of your household, a diligent shepherd of your flock, and a <span class="gold">courageous defender of your fort.</span>”</div>
+  <div class="eb" style="font-size:18px;margin-top:24px">Philip Goodwin · 1655</div>
+  <div style="font-size:23px;line-height:1.35;color:#4d4636;margin-top:22px"><span class="cin" style="font-size:30px;color:#25231a">Man Your Post</span> &nbsp;free when you join our email list</div>
+  <div class="mark" style="font-size:16px;margin-top:12px">churchandfamilylife.com</div>
  </div>
 </div>` },
 };

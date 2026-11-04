@@ -2,7 +2,8 @@
 
 Review site: https://blueboxdoctor.github.io/cfl-man-your-post-review/
 
-## Popup copy (website), v4
+## Popup copy (website), v4 copy / v5 layout
+- Layout (v5): left panel = the booklet cover, large, on moss green; no painting in the popup.
 - Eyebrow (desktop only): FOR HUSBANDS & FATHERS
 - Headline: **Liberalism may be winning. Not under your roof.**
 - Line 2: **Men, fortify your household. Man your post.**

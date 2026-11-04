@@ -19,12 +19,16 @@
     // "json"            -> POST {email,tags[]} as JSON to endpoint (CFL API / ESP webhook)
     // "mailchimp-jsonp" -> endpoint is the Mailchimp embedded-form action URL (…list-manage.com/subscribe/post?u=…&id=…)
     method: "json",
-    tag: "giveaway-man-your-post",
+    tag: "1065685",          // Mailchimp tag id for "giveaway-man-your-post" (Master List 816047355d); json method sends tagName
+    tagName: "giveaway-man-your-post",
+    startsAt: "",            // ISO date; empty = now
+    endsAt: "2026-11-18T23:59:59-05:00", // auto-open stops after this (two-week run)
+    onceOnly: true,          // auto-open at most once per browser, ever (open counts, not just close)
     delayMs: 9000,          // auto-open after N ms on the page…
     scrollPct: 0.45,        // …or after scrolling this far, whichever comes first
     exitIntent: true,       // desktop: open when the cursor heads for the tab bar
     snoozeDays: 7,          // after a close, stay quiet this long
-    minPagesBeforeAuto: 1,  // auto-open on the Nth page view or later
+    minPagesBeforeAuto: 1,  // 1 = first page view
     excludePaths: ["/checkout", "/cart", "/account", "/login", "/register", "/donate"],
     productUrl: "https://churchandfamilylife.com/products/6ac6570d68c8897ef2d80484",
     coverUrl: "https://cfl-mango.s3.us-east-1.amazonaws.com/assets/products/6ac6570d68c8897ef2d80484/image.jpg",
@@ -48,8 +52,11 @@
     return CFG.excludePaths.some(function (x) { return p.indexOf(x) === 0; });
   }
   function eligible() {
-    var s = store.get();
+    var s = store.get(), now = Date.now();
     if (s.subscribed) return false;
+    if (CFG.onceOnly && s.shownAt) return false;
+    if (CFG.endsAt && now > Date.parse(CFG.endsAt)) return false;
+    if (CFG.startsAt && now < Date.parse(CFG.startsAt)) return false;
     if (s.closedAt && Date.now() - s.closedAt < CFG.snoozeDays * 864e5) return false;
     if ((s.views || 0) < CFG.minPagesBeforeAuto) return false;
     return !excluded();
@@ -206,6 +213,7 @@ button.go:disabled{opacity:.6;cursor:wait;transform:none}\
       var i = matchMedia("(max-width:720px)").matches ? dlg : root.querySelector('input[name="email"]');
       if (i) i.focus({ preventScroll: true });
     }, 360);
+    store.set({ shownAt: Date.now() });
     track("open", source || "manual");
   }
 
@@ -244,7 +252,7 @@ button.go:disabled{opacity:.6;cursor:wait;transform:none}\
     }
     return fetch(CFG.endpoint, {
       method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: email, tags: [CFG.tag], source: "popup:man-your-post", page: location.href })
+      body: JSON.stringify({ email: email, tags: [CFG.tagName || CFG.tag], source: "popup:man-your-post", page: location.href })
     }).then(function (r) { if (!r.ok) throw new Error("We couldn't sign you up just now. Please try again."); return { ok: true }; });
   }
 
@@ -293,6 +301,9 @@ button.go:disabled{opacity:.6;cursor:wait;transform:none}\
     var a = e.target.closest && e.target.closest('a[href$="#man-your-post"],[data-myp-open]');
     if (a) { e.preventDefault(); open("click"); }
   });
+
+  // While this campaign runs, other site popups should stand down: check window.CFL_POPUP_TAKEOVER.
+  if (!CFG.endsAt || Date.now() <= Date.parse(CFG.endsAt)) window.CFL_POPUP_TAKEOVER = "man-your-post";
 
   window.CFLManYourPost = { open: open, close: close, reset: function () { try { localStorage.removeItem(KEY); } catch (e) {} }, config: CFG };
 
